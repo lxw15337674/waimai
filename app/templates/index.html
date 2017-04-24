@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="large-12 columns" style="color:#B3B3B3;font-size: 20px;margin-top:15px">当前位置:<a href="#">(用户的当前位置)</a>
+    </div>
+    <div class="large-12 columns" style="margin-top:20px;">
+        <ul class="tabs" data-tabs id="tabs">
+            <li class="tabs-title is-active">
+                <a class="menu" href="#home">全部商品</a>
+            </li>
+            <li class="tabs-title">
+                <a class="menu" href="#panel1" style="font-size: 17px ;font-weight:bold;color: black;">Tab 2</a>
+            </li>
+        </ul>
+
+        <div class="tabs-content" data-tabs-content="tabs" style="margin-top:20px;">
+            <div class="tabs-panel is-active" id="home">
+                <div class="row">
+                    <div class="large-4 medium-4 columns">
+                        <div class="primary callout">
+                            <p>1</p>
+                        </div>
+                    </div>
+                     <div class="large-4 medium-4 columns">
+                        <div class="primary callout">
+                            <p>2</p>
+                        </div>
+                    </div>
+                     <div class="large-4 medium-4 columns">
+                        <div class="primary callout">
+                            <p>2</p>
+                        </div>
+                    </div>
+                     <div class="large-4 medium-4 columns">
+                        <div class="primary callout">
+                            <p>2</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="tabs-panel" id="panel1">
+                    <p>2</p>
+                </div>
+            </div>
+
+
+        </div>
+{% endblock %}

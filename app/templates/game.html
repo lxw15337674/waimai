@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <script type="text/javascript">
+        var num = 1;
+        function run() {
+            var lol = document.createElement("h4");
+            var a = "";
+            var i = Math.floor(Math.random() * 100);
+            a += "第" + num + "个人扔了" + i + "点";
+            lol.innerHTML = a;
+            show.appendChild(lol)
+            num++;
+        }
+    </script>
+    <div class="well"
+         style="background-color:white;margin-top:100px;margin-left:300px;margin-right:300px;height:700px;">
+        <div style="padding-top:20px;padding-left: 20px;padding-right: 20px">
+        <h4 style="text-align: left">随到最小数字的人去拿外卖吧!</h4>
+<hr>
+</div>
+
+        <div style="text-align:center; padding-top:20px;padding-right:150px;padding-left:150px;">
+
+            <div style="margin-top:20px;">
+                <input type="button" class="button alert" onclick="run()" value="点我扔出一个随机数"/>
+            </div>
+            <div class="primary callout" style=" height:450px; margin-top:20px" id="show"></div>
+        </div>
+    </div>
+{% endblock %}

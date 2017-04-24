@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div align="center" style=" margin-top:100px ;padding-right:360px;padding-left:360px;">
+
+        <div class="panel"
+             style="background-color:white;padding-top:50px;padding-bottom:100px;padding-right:40px;padding-left:50px;">
+            <h3>注册</h3>
+            <form class="form form-horizontal" method="post" role="form" style="padding-top:20px">
+                {{ form.hidden_tag() }}
+                <div align="left" style="padding-bottom:5px">
+                    <img src="/static/photo/user.png" width="30" height="30" class="img-rounded">
+                </div>
+                {{ form.user(placeholder="请输入账号") }}
+                <div align="left" style="padding-top:10px;padding-bottom:5px">
+                    <img src="/static/photo/password.png" width="30" height="30" class="img-rounded">
+                </div>
+                {{ form.password1(placeholder="请输入密码") }}
+                {{ form.password2(placeholder="请再次输入密码") }}
+                <div align="left" style="padding-top:10px;padding-bottom:5px">
+                    <img src="/static/photo/address.png" width="30" height="30" class="img-rounded">
+                </div>
+                {{ form.address(placeholder="请输入地址") }}
+                <div align="left" style="padding-top:10px;padding-bottom:5px">
+                    <img src="/static/photo/phone.png" width="30" height="30" class="img-rounded">
+                </div>
+                {{ form.phone(placeholder="请输入手机号") }}
+                <div align="center" style="padding-top:10px">
+                    {{ form.submit(class="button large expanded") }}
+                </div>
+            </form>
+
+        </div>
+    </div>
+
+{% endblock %}
