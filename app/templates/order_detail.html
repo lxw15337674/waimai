@@ -1,0 +1,26 @@
+<table class="table table-bordered">
+    <thead>
+    <tr>
+        <th>名字</th>
+        <th>单价</th>
+        <th>数量</th>
+        <th>小计</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for food in order.items %}
+        <tr>
+            <td>{{ food.food_name }}</td>
+            <td>{{ food.price }}</td>
+            <td>{{ food.num }}
+                {% if order.status =='购物车' %}
+{#                <a href="{{ url_for('changenum',id='food.id,num=1) }}" class="button" role="button">增加</a>#}
+{#                <a href="{{ url_for('changenum',id='food.id,num=-1) }}" class="button" role="button">减少</a>#}
+                {% endif %}
+            </td>
+            <td>{{ food.cost }}</td>
+
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>

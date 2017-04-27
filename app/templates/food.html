@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="panel"
+         style="background-image:url(/static/photo/banner.jpg);color:white;margin-top:50px;padding-top:20px;padding-bottom:20px">
+        <div class=" row" align="center" style="margin-left: 10px;">
+            <div class="large-2 medium-2 columns">
+                <img src="{{ shop.photo }}" width="200" height="200" class="radius"/>
+            </div>
+            <div class="large-2 medium-2 columns">
+                <table>
+                    <p><strong style="font-size: large">{{ shop.name }}</strong></p>
+                    <p> 活动:{{ shop.activities }}</p>
+                </table>
+            </div>
+            <div class="large-2 medium-2 columns">
+                <table>
+                    <p>本店地址</p>
+                    <p>{{ shop.address }}元</p>
+                </table>
+            </div>
+            <div class="large-2 medium-2 columns">
+                <table>
+                    <p>联系电话</p>
+                    <p>{{ shop.phone }}</p>
+                </table>
+            </div>
+            <div class="large-2 medium-2 columns">
+                <table>
+                    <p>月销售</p>
+                    <p><strong>{{ shop.sales }}</strong>单</p>
+                </table>
+            </div>
+            <div class="large-2 medium-2 columns">
+                <table>
+                    <p>配送费</p>
+                    <p><strong>{{ shop.deliver_fee }}</strong>元</p>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel" style="padding-left: 30px;padding-right: 30px;background-color:white;margin-top:50px;padding-top:20px;padding-bottom: 500px;">
+        {% for a in foods %}
+        <div class="row">
+                <div class="large-4 medium-4 columns">
+                <table>
+                    <tr>
+                        <img src="{{ a.photo }}" width="240" height="240"/>
+                        <td width="40%">
+                            <p><strong style="font-size: large">{{ a.name }}</strong></p>
+                            <p>  {{ a.introduction }}</p>
+                            <p style="color: red ">
+                                ¥: <strong>{{ a.price }}</strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span><a
+                                   href="{{ url_for('cart',id=a.id) }}" class="button alert">购买</a></span>
+                            </p>
+                        </td>
+                    </tr>
+                </table>
+            {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+

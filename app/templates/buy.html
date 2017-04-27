@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div align="center" style="text-align:center;margin-top:50px;">
+        <div class="panel" align="left"
+             style="background-color:white;padding-top:50px;padding-bottom:500px;padding-right:40px;padding-left:30px;">
+            {% if order.cost %}
+                <h1>购物车</h1>
+                <div>
+                    {% include 'order_detail.html' %}
+                </div>
+                <div align="right" style="font-size:30px;padding-right: 60px">
+                    总价:¥ <strong>{{ order.cost }}</strong> &nbsp;&nbsp;&nbsp;
+                    <a class="button large" data-open="pay">去结算</a>
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+
+                    <div class="reveal" id="pay" data-reveal>
+                        <form class="form form-horizontal" method="post" role="form"
+                              style="padding-top: 20px;padding-left:80px;padding-right:80px;">
+                            {{ form.hidden_tag() }}
+                            {{ form.password(placeholder="请输入支付密码") }}
+                            {% for error in form.errors.password %}
+                                <span class="help-inline" style="color: red"><strong> 错误:</strong>{{ error }}</span><br>
+                            {% endfor %}
+                            <div align="center">
+                                {{ form.submit(class="button large") }}
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            {% else %}
+                <h2>购物车空空如也,请到首页选购</h2>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}
+

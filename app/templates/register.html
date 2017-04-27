@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <div align="center" style=" margin-top:100px ;padding-right:360px;padding-left:360px;">
+    <div align="center" style=" margin-top:50px ;padding-right:360px;padding-left:360px;">
 
         <div class="panel"
              style="background-color:white;padding-top:50px;padding-bottom:100px;padding-right:40px;padding-left:50px;">
@@ -11,20 +11,56 @@
                 <div align="left" style="padding-bottom:5px">
                     <img src="/static/photo/user.png" width="30" height="30" class="img-rounded">
                 </div>
-                {{ form.user(placeholder="请输入账号") }}
+                {{ form.name(placeholder="请输入真实姓名") }}
+                {{ form.username(placeholder="请输入账号") }}
+                {% for error in form.errors.username %}
+                    <span class="help-inline" style="color: red"><strong> 错误:</strong>{{ error }}</span><br>
+                {% endfor %}
                 <div align="left" style="padding-top:10px;padding-bottom:5px">
                     <img src="/static/photo/password.png" width="30" height="30" class="img-rounded">
                 </div>
-                {{ form.password1(placeholder="请输入密码") }}
-                {{ form.password2(placeholder="请再次输入密码") }}
+                {{ form.password1(placeholder="请输入登录密码") }}
+                {% for error in form.errors.password1 %}
+                    <span class="help-inline" style="color: red"><strong> 错误:</strong>{{ error }}</span><br>
+                {% endfor %}
+                {{ form.password2(placeholder="请再次输入登录密码") }}
+                {% for error in form.errors.password2 %}
+                    <span class="help-inline" style="color: red"><strong> 错误:</strong>{{ error }}</span><br>
+                {% endfor %}
+                {{ form.pin(placeholder="请输入支付密码") }}
+                {% for error in form.errors.pin %}
+                    <span class="help-inline" style="color: red"><strong> 错误:</strong>{{ error }}</span><br>
+                {% endfor %}
+                <label>
+                    <div align="left"><strong>类别:</strong></div>
+                    {% for subfield in form.category %}
+                        {{ subfield }}
+                        {{ subfield.label }}
+                    {% endfor %}
+                </label>
+                {{ form.admin(placeholder="注册管理员密码(用户不用输入该栏)") }}
+
+                <div align="left" style="padding-bottom:5px">
+                    <img src="/static/photo/photo.png" width="30" height="30" class="img-rounded">
+                </div>
+                {{ form.photo(placeholder="请输入头像地址") }}
+                {% for error in form.errors.photo %}
+                    <span class="help-inline" style="color: red"><strong> 错误:</strong>{{ error }}</span><br>
+                {% endfor %}
                 <div align="left" style="padding-top:10px;padding-bottom:5px">
                     <img src="/static/photo/address.png" width="30" height="30" class="img-rounded">
                 </div>
                 {{ form.address(placeholder="请输入地址") }}
+                {% for error in form.errors.address %}
+                    <span class="help-inline" style="color: red"><strong> 错误:</strong>{{ error }}</span><br>
+                {% endfor %}
                 <div align="left" style="padding-top:10px;padding-bottom:5px">
                     <img src="/static/photo/phone.png" width="30" height="30" class="img-rounded">
                 </div>
                 {{ form.phone(placeholder="请输入手机号") }}
+            {% for error in form.errors.phone %}
+                                <span class="help-inline" style="color: red"><strong> 错误:</strong>{{ error }}</span><br>
+                            {% endfor %}
                 <div align="center" style="padding-top:10px">
                     {{ form.submit(class="button large expanded") }}
                 </div>

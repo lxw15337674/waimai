@@ -9,39 +9,93 @@
                 <a class="menu" href="#home">全部商品</a>
             </li>
             <li class="tabs-title">
-                <a class="menu" href="#panel1" style="font-size: 17px ;font-weight:bold;color: black;">Tab 2</a>
+                <a class="menu" href="#panel1" style="font-size: 17px ;font-weight:bold;color: black;">中餐</a>
+            </li>
+            <li class="tabs-title">
+                <a class="menu" href="#panel2" style="font-size: 17px ;font-weight:bold;color: black;">西餐</a>
             </li>
         </ul>
 
         <div class="tabs-content" data-tabs-content="tabs" style="margin-top:20px;">
             <div class="tabs-panel is-active" id="home">
                 <div class="row">
-                    <div class="large-4 medium-4 columns">
-                        <div class="primary callout">
-                            <p>1</p>
-                        </div>
-                    </div>
-                     <div class="large-4 medium-4 columns">
-                        <div class="primary callout">
-                            <p>2</p>
-                        </div>
-                    </div>
-                     <div class="large-4 medium-4 columns">
-                        <div class="primary callout">
-                            <p>2</p>
-                        </div>
-                    </div>
-                     <div class="large-4 medium-4 columns">
-                        <div class="primary callout">
-                            <p>2</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="tabs-panel" id="panel1">
-                    <p>2</p>
+                    {% for a in bussinesses %}
+                        <a href="{{ url_for('food',id=a.id)}}" class="food">
+                            <div class="large-4 medium-4 columns">
+                                <table class="hover">
+                                    <tr>
+                                        <td width="60%">
+                                            <img src="{{ a.photo }}" width="180" height="180"/>
+                                        <td>
+                                            <p><strong style="font-size: large">{{ a.name }}</strong></p>
+                                            <p>
+                                                月销售<strong>{{ a.sales }}</strong>单
+                                            </p>
+                                            <p>
+                                                <small>配送费:<strong>{{ a.deliver_fee }}</strong>元</small>
+                                            </p>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </a>
+                    {% endfor %}
                 </div>
             </div>
-
-
+            <div class="tabs-panel" id="panel1">
+                <div class="row">
+                    {% for a in bussinesses %}
+                        {% if a.category == "中餐" %}
+                            <a href="{{ url_for('food',id=a.id)}}" class="food">
+                                <div class="large-4 medium-4 columns">
+                                    <table class="hover">
+                                        <tr>
+                                            <td width="60%">
+                                                <img src="{{ a.photo }}" width="180" height="180"/>
+                                            <td>
+                                                <p><strong style="font-size: large">{{ a.name }}</strong></p>
+                                                <p>
+                                                    月销售<strong>{{ a.sales }}</strong>单
+                                                </p>
+                                                <p>
+                                                    <small>配送费:<strong>{{ a.deliver_fee }}</strong>元</small>
+                                                </p>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </a>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="tabs-panel" id="panel2">
+                <div class="row">
+                    {% for a in bussinesses %}
+                        {% if a.category == "西餐" %}
+                            <a href="{{ url_for('food',id=a.id)}}" class="food">
+                                <div class="large-4 medium-4 columns">
+                                    <table class="hover">
+                                        <tr>
+                                            <td width="60%">
+                                                <img src="{{ a.photo }}" width="180" height="180"/>
+                                            <td>
+                                                <p><strong style="font-size: large">{{ a.name }}</strong></p>
+                                                <p>
+                                                    月销售<strong>{{ a.sales }}</strong>单
+                                                </p>
+                                                <p>
+                                                    <small>配送费:<strong>{{ a.deliver_fee }}</strong>元</small>
+                                                </p>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </a>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
         </div>
+    </div>
 {% endblock %}
