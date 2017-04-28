@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div align="center" style="text-align:center;margin-top:50px;">
+        <div class="panel" align="left"
+             style="background-color:white;padding-top:50px;padding-bottom:500px;padding-right:40px;padding-left:30px;">
+
+            <table class="table">
+                <caption><h3>用户信息</h3></caption>
+                <thead>
+                <tr>
+                    <th>编号</th>
+                    <th>名字</th>
+                    <th>账号</th>
+                    <th>地址</th>
+                    <th>手机号</th>
+                    <th>账户类别</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for user in list %}
+                    <tr>
+                        <td>{{ user.id }}</td>
+                        <td>{{ user.name }}</td>
+                        <td>{{ user.username }}</td>
+                        <td>{{ user.address }}</td>
+                        <td>{{ user.phone }}</td>
+                        <td>{{ user.category }}</td>
+                    </tr>
+                {% endfor %}
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}上传{% endblock %}
+{% block content %}
+    <div class="panel"
+         style="background-color:white;margin-top:50px;margin-left:100px;margin-right:100px;padding-top:50px;padding-bottom:100px;padding-right:50px;padding-left:50px;">
+        <div style="margin-left: 200px;margin-right: 200px">
+            <h3>上传</h3>
+            <form class="form form-horizontal" method="post" role="form">
+                {{ form.hidden_tag() }}
+                请输入菜品名字:
+                {{ form.name }}
+                {% for error in form.errors.name %}
+                    <span class="help-inline" style="color: red"><strong> 错误:</strong>{{ error }}</span><br>
+                {% endfor %}
+                请输入菜品价格:
+                {{ form.price }}
+                {% for error in form.errors.price %}
+                    <span class="help-inline" style="color: red"><strong> 错误:</strong>{{ error }}</span><br>
+                {% endfor %}
+                请输入菜品图片uri:
+                {{ form.photo }}
+                {% for error in form.errors.photo %}
+                    <span class="help-inline" style="color: red"><strong> 错误:</strong>{{ error }}</span><br>
+                {% endfor %}
+                请输入菜品介绍
+                {{ form.introduction }}
+                {% for error in form.errors.introduction %}
+                    <span class="help-inline" style="color: red"><strong> 错误:</strong>{{ error }}</span><br>
+                {% endfor %}
+                <div align="center">
+                    {{ form.submit(class="button large") }}</div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

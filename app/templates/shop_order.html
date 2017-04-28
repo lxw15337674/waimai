@@ -16,9 +16,6 @@
                     <th>电话</th>
                     <th>总价</th>
                     <td>状态</td>
-                    <td>
-                        <div align="center">相关操作</div>
-                    </td>
                 </tr>
                 </thead>
                 <tbody>
@@ -32,9 +29,6 @@
                             <td>{{ order.user_phone }}</td>
                             <td>{{ order.cost }}</td>
                             <td>{{ order.status }}</td>
-                            <td>
-                                <div align="center"><a class="button "><strong>明细</strong></a></div>
-                            </td>
                         </tr>
                     {% endif %}
                 {% endfor %}

@@ -70,16 +70,14 @@
                         <li>你好，{{ g.user.name }} </li>
 
                         {% if g.user.category =='商家' %}
-                            <li><a class="bar" href="#">菜品管理</a></li>
-                            <li><a class="bar" href="#">查询订单信息</a></li>
-                            <li><a class="bar" href="#">修改活动</a></li>
+                            <li><a class="bar" href="{{ url_for('upload') }}">菜品上传</a></li>
+                            <li><a class="bar" href="{{ url_for('shop_order') }}">查询订单信息</a></li>
                         {% elif g.user.category =='用户' %}
                             <li><a class="bar" href="{{ url_for('buy') }}">我的购物车</a></li>
-                            <li><a class="bar" href="">我的订单</a></li>
+                            <li><a class="bar" href="{{ url_for('order') }}">我的订单</a></li>
                         {% elif g.user.category =='管理员' %}
-                            <li><a class="bar" href="#">查看用户信息</a></li>
-                            <li><a class="bar" href="#">查看所有订单信息</a></li>
-                            <li><a class="bar" href="#">查看商家信息</a></li>
+                            <li><a class="bar" href="{{ url_for('admin_user') }}">查看用户信息</a></li>
+                            <li><a class="bar" href="{{ url_for('admin_order') }}">查看所有订单信息</a></li>
                         {% endif %}
                         <li><a class="bar" href="{{ url_for('logout') }}">登出</a></li>
 

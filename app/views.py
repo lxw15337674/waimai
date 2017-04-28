@@ -2,7 +2,7 @@ from flask import render_template, flash, redirect, url_for, g
 from flask_login import login_user, login_required, logout_user, current_user
 
 from app import app, db, adminpassword, lm, date
-from app.forms import LoginForm, RegisterForm, PayForm
+from app.forms import LoginForm, RegisterForm, PayForm, UploadForm
 from app.models import User, Order, Businesses, Food, OrderItem
 
 
@@ -112,7 +112,10 @@ def buy():
         if g.user.pin == target:
             order.status = '已支付'
             order.time = date.date()
-            order.address = User.query.filter_by(id=g.user.id).first().address
+            order.user_address = g.user.address
+            order.user_id = g.user.id
+            order.user_name = g.user.name
+            order.user_phone = g.user.phone
             # 再给用户创建购物车
             order = Order(g.user.id)
             db.session.add(order)
@@ -124,9 +127,89 @@ def buy():
     return render_template('buy.html', order=order, form=form)
 
 
+# 购物车页面改变商品数量
+@app.route('/changenum/<id>/<num>', methods=['GET'])
+@login_required
+def changenum(id, num):
+    food = OrderItem.query.filter_by(id=id).first()
+    num = int(num)
+    food.changenum(num)  # 更新订单商品数量
+    if food.num <= 0:
+        db.session.delete(food)
+    order = Order.query.filter_by(id=food.Order_id).first()  # 购物车
+    order.updatecost()  # 更新订单价格
+    db.session.commit()
+    return redirect(url_for('buy'))
+
+
+# 管理员查看订单页面
+@app.route('/admin_order')
+@login_required
+def admin_order():
+    if g.user.category =='管理员':
+        flash("管理员你好")
+    else:
+        flash("不是管理员,不能进入该页面")
+        return redirect(url_for('goods'))
+    allorder = Order.query.filter_by().all()
+    return render_template('order.html', orders=allorder)
+
+# 管理员查看用户页面
+@app.route('/admin_user')
+@login_required
+def admin_user():
+    if g.user.category =='管理员':
+        flash("管理员你好")
+    else:
+        flash("不是管理员,不能进入该页面")
+        return redirect(url_for('goods'))
+    list = User.query.filter_by().all()
+    return render_template('admin_user.html', list = list)
+
+# # 管理员查看订单页面
+# @app.route('/admin_order')
+# @login_required
+# def admin_order():
+#     if g.user.category =='管理员':
+#         flash("管理员你好")
+#     else:
+#         flash("不是管理员,不能进入该页面")
+#         return redirect(url_for('goods'))
+#     allorder = Order.query.filter_by().all()
+#     return render_template('order.html', orders=allorder)
+
+# 商家上传菜品
+@app.route('/upload', methods=['GET', 'POST'])
+@login_required
+def upload():
+    if g.user.category != '商家':
+        flash("不是商家,不能进入该页面")
+        return redirect(url_for('index'))
+    form = UploadForm()
+    if form.validate_on_submit():
+        food = Food(name=form.name.data, introduction=form.introduction.data, price=form.price.data,
+                    photo=form.photo.data, businesses_id=g.user.id)
+        db.session.add(food)
+        db.session.commit()
+        flash('上传成功')
+        return redirect(url_for('upload'))
+    return render_template('upload.html', title="上传", form=form)
+
+
+@app.route('/shop_order')
+def shop_order():
+    if g.user.category != '商家':
+        flash("不是商家,不能进入该页面")
+        return redirect(url_for('index'))
+    shop_id = Businesses.query.filter_by(user_id=g.user.id).first().id
+    orders = Order.query.filter_by(businesses_id=shop_id).all()
+    return render_template('shop_order.html', orders=orders)
+
+
 @app.route('/order')
 def order():
-    return render_template('order.html')
+    orders = Order.query.filter_by(user_id=g.user.id).all()
+    return render_template('order.html', orders=orders)
 
 
 @app.route('/game')

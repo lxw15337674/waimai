@@ -49,3 +49,9 @@ class PayForm(FlaskForm):
     password = PasswordField('支付密码')
     submit = SubmitField('支付')
 
+class UploadForm(FlaskForm):
+    name = StringField('菜品名称', validators=[DataRequired(message="不能为空")])
+    photo = StringField('商品图片',validators=[DataRequired(message="不能为空")])
+    introduction = StringField('商品介绍', validators=[DataRequired(message="不能为空")])
+    price = StringField('商品价格', validators=[DataRequired(message="不能为空"),Regexp('[0-9]*', message='必须为数字')])
+    submit = SubmitField('提交')

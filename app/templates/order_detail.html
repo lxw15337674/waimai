@@ -12,10 +12,12 @@
         <tr>
             <td>{{ food.food_name }}</td>
             <td>{{ food.price }}</td>
-            <td>{{ food.num }}
+            <td>{{ food.num }} &nbsp;&nbsp;&nbsp;
                 {% if order.status =='购物车' %}
-{#                <a href="{{ url_for('changenum',id='food.id,num=1) }}" class="button" role="button">增加</a>#}
-{#                <a href="{{ url_for('changenum',id='food.id,num=-1) }}" class="button" role="button">减少</a>#}
+
+                <a href="{{ url_for('changenum',id=food.id,num=1) }}" class="button" role="button">增加</a>
+                 &nbsp;&nbsp;&nbsp;
+                    <a href="{{ url_for('changenum',id=food.id,num=-1) }}" class="button" role="button">减少</a>
                 {% endif %}
             </td>
             <td>{{ food.cost }}</td>

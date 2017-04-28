@@ -40,25 +40,29 @@
         </div>
     </div>
 
-    <div class="panel" style="padding-left: 30px;padding-right: 30px;background-color:white;margin-top:50px;padding-top:20px;padding-bottom: 500px;">
-        {% for a in foods %}
+    <div class="panel"
+         style="padding-left: 30px;padding-right: 30px;background-color:white;margin-top:50px;padding-top:20px;padding-bottom: 500px;">
+         {% for a in foods %}
         <div class="row">
+
                 <div class="large-4 medium-4 columns">
-                <table>
-                    <tr>
-                        <img src="{{ a.photo }}" width="240" height="240"/>
-                        <td width="40%">
-                            <p><strong style="font-size: large">{{ a.name }}</strong></p>
-                            <p>  {{ a.introduction }}</p>
-                            <p style="color: red ">
-                                ¥: <strong>{{ a.price }}</strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span><a
-                                   href="{{ url_for('cart',id=a.id) }}" class="button alert">购买</a></span>
-                            </p>
-                        </td>
-                    </tr>
-                </table>
-            {% endfor %}
-            </div>
+                    <table>
+                        <tr>
+                            <td align="center">
+                            <img src="{{ a.photo }}" width="240" height="240"/>
+                            </td>
+                            <td width="40%">
+                                <p><strong style="font-size: large">{{ a.name }}</strong></p>
+                                <p>  {{ a.introduction }}</p>
+                                <p style="color: red ">
+                                    ¥: <strong>{{ a.price }}</strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span><a
+                                        href="{{ url_for('cart',id=a.id) }}" class="button alert">购买</a></span>
+                                </p>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+         {% endfor %}
         </div>
     </div>
 {% endblock %}
