@@ -72,6 +72,8 @@
                         {% if g.user.category =='商家' %}
                             <li><a class="bar" href="{{ url_for('upload') }}">菜品上传</a></li>
                             <li><a class="bar" href="{{ url_for('shop_order') }}">查询订单信息</a></li>
+                            <li><a class="bar" href="{{ url_for('shop_food') }}">查询菜品信息</a></li>
+
                         {% elif g.user.category =='用户' %}
                             <li><a class="bar" href="{{ url_for('buy') }}">我的购物车</a></li>
                             <li><a class="bar" href="{{ url_for('order') }}">我的订单</a></li>

@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <div class="large-12 columns" style="color:#B3B3B3;font-size: 20px;margin-top:15px">当前位置:<a href="#">(用户的当前位置)</a>
+    <div class="large-12 columns" style="color:#B3B3B3;font-size: 20px;margin-top:15px">当前位置:<a href="#">{{ g.user.address }}</a>
     </div>
     <div class="large-12 columns" style="margin-top:20px;">
         <ul class="tabs" data-tabs id="tabs">
@@ -96,6 +96,7 @@
                     {% endfor %}
                 </div>
             </div>
+
         </div>
     </div>
 {% endblock %}

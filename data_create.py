@@ -31,11 +31,11 @@ businesses1 = Businesses(name="烤肉店", address="东苑楼下", activities="�
 
 businesses2 = Businesses(name="炒米", address="东苑楼下", activities="没活动", phone=15368588745, category="中餐", deliver_fee=2,
                          photo='https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1493904967&di=ef7c2b260990d8a647fb275f864c0635&imgtype=jpg&er=1&src=http%3A%2F%2Fimg.zhuyun.cn%2FM00%2FE5%2FC5%2FwKgJNFdZNJ6Ab-hWAADcQaYKcVs213.jpg',
-                         sales=3, user_id=2)
+                         sales=3, user_id=1)
 
 businesses3 = Businesses(name="青春汉堡", address="东苑楼下", activities="没活动", phone=15368588745, category="西餐", deliver_fee=1,
                          photo='https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1493310607697&di=e47eac84e7bfa31039c8a0d23ce40234&imgtype=0&src=http%3A%2F%2Fwww.txw6.com%2Fuploads%2Fallimg%2F140814%2F63-140Q41641390-L.jpg',
-                         sales=3, user_id=2)
+                         sales=3, user_id=3)
 
 food1 = Food(name="烤肉拌饭",
             introduction="好吃的饭",

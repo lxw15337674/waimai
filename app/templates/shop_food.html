@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div align="center" style="text-align:center;margin-top:50px;">
+        <div class="panel" align="left"
+             style="background-color:white;padding-top:50px;padding-bottom:500px;padding-right:40px;padding-left:30px;">
+            <h3>菜品</h3>
+            <hr>
+            <table class="unstriped">
+                <thead>
+                <tr>
+                    <th>商品id</th>
+                    <th>名字</th>
+                    <th>介绍</th>
+                    <th>价格</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for food in foods %}
+                        <tr>
+                            <td>{{ food.id }}</td>
+                            <td>{{ food.name }}</td>
+                            <td>{{ food.introduciton }}</td>
+                            <td>{{ food.price }}</td>
+                            <td><a class="btn btn-danger" href="{{ url_for("delete",id=food.id) }}">删除</a>
+                        </tr>
+
+                {% endfor %}
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+
+{% endblock %}

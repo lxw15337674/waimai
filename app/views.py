@@ -166,18 +166,6 @@ def admin_user():
     list = User.query.filter_by().all()
     return render_template('admin_user.html', list = list)
 
-# # 管理员查看订单页面
-# @app.route('/admin_order')
-# @login_required
-# def admin_order():
-#     if g.user.category =='管理员':
-#         flash("管理员你好")
-#     else:
-#         flash("不是管理员,不能进入该页面")
-#         return redirect(url_for('goods'))
-#     allorder = Order.query.filter_by().all()
-#     return render_template('order.html', orders=allorder)
-
 # 商家上传菜品
 @app.route('/upload', methods=['GET', 'POST'])
 @login_required
@@ -205,6 +193,25 @@ def shop_order():
     orders = Order.query.filter_by(businesses_id=shop_id).all()
     return render_template('shop_order.html', orders=orders)
 
+@app.route('/shop_food')
+def shop_food():
+    if g.user.category != '商家':
+        flash("不是商家,不能进入该页面")
+        return redirect(url_for('index'))
+    shop = Businesses.query.filter_by(user_id=g.user.id).first()
+    foods = Food.query.filter_by(businesses_id=shop.id).all()
+    return render_template('shop_food.html', foods =foods)
+
+# 购物车页面改变商品数量
+@app.route('/delete/<id>', methods=['GET'])
+@login_required
+def delete(id):
+    food = Food.query.filter_by(id=id).first()
+    if food:
+        db.session.delete(food)
+        db.session.commit()
+        flash("删除成功")
+    return redirect(url_for('admin_food'))
 
 @app.route('/order')
 def order():
