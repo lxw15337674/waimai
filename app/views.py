@@ -7,6 +7,7 @@ from app.models import User, Order, Businesses, Food, OrderItem
 
 
 @app.route('/')
+@login_required
 def index():
     bussinesses = Businesses.query.filter_by().order_by(Businesses.sales).all()
     return render_template('index.html', bussinesses=bussinesses)

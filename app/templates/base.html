@@ -58,9 +58,10 @@
                 <ul class="dropdown menu" data-dropdown-menu style="background-color: #3A5FCD;">
                     <li class="menu-text">外卖网站</li>
                     <li><a class="bar" href="{{ url_for('index') }}">首页</a></li>
-                    <li><a class="bar" href="{{ url_for('order') }}">我的订单</a></li>
-                    <li><a class="bar" href="{{ url_for('game') }}">谁去拿外卖</a></li>
-
+                    {% if g.user.is_authenticated %}
+                        <li><a class="bar" href="{{ url_for('order') }}">我的订单</a></li>
+                        <li><a class="bar" href="{{ url_for('game') }}">谁去拿外卖</a></li>
+                    {% endif %}
                 </ul>
             </div>
 
